@@ -1,1 +1,82 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap"
+            rel="stylesheet"
+        />
 
+        <meta charset="UTF-8" />
+
+        <title>blueboxxxx</title>
+        <meta name="description" content="a personal page for music producer blueboxxxx" />
+        <meta name="robots" content="index, follow" />
+
+        <link rel="canonical" href="https://blueboxxxx.com/" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <meta name="theme-color" content="#000000" />
+        <meta name="color-scheme" content="dark" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="blueboxxxx" />
+        <meta property="og:description" content="page for blueboxxxx" />
+        <meta property="og:url" content="https://blueboxxxx.com/" />
+        <meta property="og:site_name" content="blueboxxxx" />
+        <meta property="og:image" content="https://blueboxxxx.com/b.png" />
+        <meta property="og:image:alt" content="blueboxxxx icon" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="blueboxxxx" />
+        <meta name="twitter:description" content="page for blueboxxxx" />
+        <meta name="twitter:image" content="https://blueboxxxx.com/b.png" />
+
+        <link rel="icon" href="/favicon.ico" />
+
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100svw;
+                height: 100svh;
+                overflow: hidden;
+                touch-action: manipulation;
+            }
+            body {
+                background: linear-gradient(#3366cf, #22337f);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .name {
+                transition: letter-spacing, color;
+                transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+                transition-duration: 1.5s;
+                font-family: "Barlow Condensed", sans-serif;
+                font-size: min(4rem, 10vw);
+                user-select: none;
+                letter-spacing: -16px;
+                color: black;
+            }
+            .name.loaded {
+                letter-spacing: 0px;
+                color: white;
+                text-shadow: 0px 4px 8px #0002;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="name">blueboxxxx</div>
+        <script>
+            window.addEventListener("load", () => {
+                setTimeout(() => {
+                    document.querySelector(".name").classList.add("loaded");
+                }, 100);
+            });
+        </script>
+    </body>
+</html>
