@@ -10,7 +10,7 @@
 
         <meta charset="UTF-8" />
 
-        <title>blueboxxxx</title>
+        <title>blueboxxxx music</title>
         <meta name="description" content="a personal page for music producer blueboxxxx" />
         <meta name="robots" content="index, follow" />
 
@@ -49,28 +49,39 @@
             body {
                 background: linear-gradient(#3366cf, #22337f);
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
             }
             .name {
-                transition: letter-spacing, color;
+                transition: letter-spacing, opacity;
                 transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
                 transition-duration: 1.5s;
                 font-family: "Barlow Condensed", sans-serif;
                 font-size: min(4rem, 10vw);
                 user-select: none;
                 letter-spacing: -16px;
-                color: black;
+                color: white;
+                opacity: 0%;
             }
             .name.loaded {
                 letter-spacing: 0px;
-                color: white;
+                opacity: 100%;
                 text-shadow: 0px 4px 8px #0002;
+            }
+            .name span {
+                color: #8af;
+            }
+
+            p span {
+                opacity: 50%;
+                font-size: 0.8rem;
             }
         </style>
     </head>
     <body>
-        <div class="name">blueboxxxx</div>
+        <div class="name">bluebo<span>xxxx</span></div>
+        <p>The World's Greatest Music Producer <span>(according to me)</span></p>
         <script>
             window.addEventListener("load", () => {
                 setTimeout(() => {
