@@ -7,11 +7,18 @@
             href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap"
             rel="stylesheet"
         />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fontsource/metropolis@latest/index.css"
+        />
 
         <meta charset="UTF-8" />
 
-        <title>blueboxxxx music</title>
-        <meta name="description" content="a personal page for music producer blueboxxxx" />
+        <title>blueboxxxx</title>
+        <meta
+            name="description"
+            content="A Personal Page for Music Producer & Visual Artist blueboxxxx"
+        />
         <meta name="robots" content="index, follow" />
 
         <link rel="canonical" href="https://blueboxxxx.com/" />
@@ -37,6 +44,12 @@
         <link rel="icon" href="/favicon.ico" />
 
         <style>
+            @font-face {
+                font-family: "Metropolis";
+                src: url("/fonts/Metropolis/Metropolis-Medium.otf") format("opentype");
+                font-style: normal;
+            }
+
             html,
             body {
                 margin: 0;
@@ -45,6 +58,7 @@
                 height: 100svh;
                 overflow: hidden;
                 touch-action: manipulation;
+                font-family: "Metropolis", sans-serif;
             }
             body {
                 background: linear-gradient(#3366cf, #22337f);
@@ -53,6 +67,12 @@
                 justify-content: center;
                 align-items: center;
             }
+
+            :focus-visible {
+                outline: 2px solid #8af;
+                outline-offset: 3px;
+            }
+
             .name {
                 transition: letter-spacing, opacity;
                 transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
@@ -70,18 +90,114 @@
                 text-shadow: 0px 4px 8px #0002;
             }
             .name span {
+                position: relative;
                 color: #8af;
+            }
+
+            .name span:hover {
+                animation: glowupdown 0.25s linear alternate infinite;
+                cursor: help;
+            }
+            @keyframes glowupdown {
+                from {
+                    color: #8af;
+                }
+
+                to {
+                    color: #adf;
+                }
+            }
+
+            .name span:hover::after {
+                width: auto;
+                font-size: 1rem;
+                position: absolute;
+                top: -2rem;
+                left: 0;
+                white-space: nowrap;
+                padding: 1rem;
+                content: "it's 4 x's like a uh square has 4 sides, not spam";
+                border: 1px solid #8af;
+                color: #dfdfdf;
+                background-color: #22337f;
+                letter-spacing: 0;
             }
 
             p span {
                 opacity: 50%;
                 font-size: 0.8rem;
             }
+
+            p {
+                max-width: 90svw;
+                line-break: loose;
+            }
+
+            .socials {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                max-width: 90svw;
+                gap: 1rem;
+                background-color: #0001;
+                padding: 0.6rem;
+                border-radius: calc(4px + 0.6rem);
+            }
+
+            .socials-item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: min(2rem, 3svw);
+                height: min(2rem, 3svw);
+                text-decoration: none;
+                background-color: #0004;
+                padding: 1rem;
+                border-radius: 4px;
+            }
+
+            .socials-item[disabled] {
+                opacity: 50%;
+                filter: saturate(0) brightness(0.5);
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+
+            .socials-img {
+                filter: contrast(0) sepia() saturate(10) hue-rotate(200deg);
+                width: 2rem;
+            }
         </style>
     </head>
     <body>
         <div class="name">bluebo<span>xxxx</span></div>
         <p>The World's Greatest Music Producer <span>(according to me)</span></p>
+        <div class="socials">
+            <a class="socials-item" href="link" target="_blank" disabled>
+                <img src="https://cdn.simpleicons.org/discord" class="socials-img" />
+            </a>
+
+            <a class="socials-item" href="link" target="_blank" disabled>
+                <img src="https://cdn.simpleicons.org/youtube" class="socials-img" />
+            </a>
+
+            <a
+                class="socials-item"
+                href="https://soundcloud.com/bluebox-734417346"
+                target="_blank"
+            >
+                <img src="https://cdn.simpleicons.org/soundcloud" class="socials-img" />
+            </a>
+
+            <a class="socials-item" href="link" target="_blank" disabled>
+                <img src="https://cdn.simpleicons.org/instagram" class="socials-img" />
+            </a>
+
+            <a class="socials-item" href="link" target="_blank" disabled>
+                <img src="https://cdn.simpleicons.org/spotify" class="socials-img" />
+            </a>
+        </div>
         <script>
             window.addEventListener("load", () => {
                 setTimeout(() => {
