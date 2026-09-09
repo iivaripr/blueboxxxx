@@ -7,10 +7,6 @@
             href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap"
             rel="stylesheet"
         />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@fontsource/metropolis@latest/index.css"
-        />
 
         <meta charset="UTF-8" />
 
@@ -44,9 +40,48 @@
         <link rel="icon" href="/favicon.ico" />
 
         <style>
+            :root {
+                --font-primary: "Metropolis", sans-serif;
+                --font-display: "Barlow Condensed", sans-serif;
+
+                --color-bg-start: #3366cf;
+                --color-bg-end: #22337f;
+                --color-accent: #8af;
+                --color-accent-light: #adf;
+                --color-white: #fff;
+                --color-text-muted: #dfdfdf;
+
+                --overlay-light: #0001;
+                --overlay-medium: #0004;
+                --shadow-soft: #0002;
+
+                --transition-timing: cubic-bezier(0.22, 1, 0.36, 1);
+                --transition-duration: 1.5s;
+
+                --shadow-soft-settings: 0px 4px 8px;
+
+                --socials-rotate: 200deg;
+            }
+
+            :root.evil {
+                --color-bg-start: #700f0f;
+                --color-bg-end: #0f0000;
+                --color-accent: #f00;
+                --color-accent-light: #fda;
+                --color-white: #000;
+                --color-text-muted: #666;
+                --overlay-light: #2001;
+                --overlay-medium: #2004;
+                --shadow-soft: #f00;
+
+                --shadow-soft-settings: 0px 0px 4px;
+
+                --socials-rotate: -45deg;
+            }
+
             @font-face {
                 font-family: "Metropolis";
-                src: url("/fonts/Metropolis/Metropolis-Medium.otf") format("opentype");
+                src: url("fonts/Metropolis/Metropolis-Medium.otf") format("opentype");
                 font-style: normal;
             }
 
@@ -58,53 +93,70 @@
                 height: 100svh;
                 overflow: hidden;
                 touch-action: manipulation;
-                font-family: "Metropolis", sans-serif;
+                font-family: var(--font-primary);
+                color: var(--color-white);
             }
             body {
-                background: linear-gradient(#3366cf, #22337f);
+                background: linear-gradient(
+                    to bottom right,
+                    var(--color-bg-start),
+                    var(--color-bg-end)
+                );
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
             }
 
+            body::after {
+                content: "";
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+
+                background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+                opacity: 0.1;
+                mix-blend-mode: overlay;
+            }
+
             :focus-visible {
-                outline: 2px solid #8af;
+                outline: 2px solid var(--color-accent);
                 outline-offset: 3px;
             }
 
             .name {
                 transition: letter-spacing, opacity;
-                transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-                transition-duration: 1.5s;
-                font-family: "Barlow Condensed", sans-serif;
+                transition-timing-function: var(--transition-timing);
+                transition-duration: var(--transition-duration);
+                font-family: var(--font-display);
                 font-size: min(4rem, 20vw);
                 user-select: none;
                 letter-spacing: -16px;
-                color: white;
+                color: var(--color-white);
                 opacity: 0%;
             }
             .name.loaded {
                 letter-spacing: 0px;
                 opacity: 100%;
-                text-shadow: 0px 4px 8px #0002;
+                text-shadow: var(--shadow-soft-settings) var(--shadow-soft);
             }
             .name span {
                 position: relative;
-                color: #8af;
+                color: var(--color-accent);
             }
 
             .name span:hover {
-                animation: glowupdown 0.25s linear alternate infinite;
+                animation: glowupdown 0.25s var(--transition-timing) alternate infinite;
                 cursor: help;
             }
             @keyframes glowupdown {
                 from {
-                    color: #8af;
+                    color: var(--color-accent);
                 }
 
                 to {
-                    color: #adf;
+                    color: var(--color-accent-light);
                 }
             }
 
@@ -117,21 +169,28 @@
                 white-space: nowrap;
                 padding: 1rem;
                 content: "it's 4 x's like a uh square has 4 sides, not spam";
-                border: 1px solid #8af;
-                color: #dfdfdf;
-                background-color: #22337f;
+                border: 1px solid var(--color-accent);
+                color: var(--color-text-muted);
+                background-color: var(--color-bg-end);
                 letter-spacing: 0;
             }
 
-            p span {
+            .bx-main-content span {
                 opacity: 50%;
                 font-size: 0.8rem;
             }
 
-            p {
+            .bx-main-content span[orig] {
+                opacity: 1;
+                font-size: 1rem;
+                color: var(--color-accent);
+            }
+
+            .bx-main-content {
                 max-width: 90svw;
                 line-break: loose;
                 user-select: none;
+                text-shadow: var(--shadow-soft-settings) var(--shadow-soft);
             }
 
             .socials {
@@ -139,8 +198,8 @@
                 justify-content: center;
                 flex-wrap: wrap;
                 max-width: 90svw;
-                gap: 1rem;
-                background-color: #0001;
+                gap: 0.6rem;
+                background-color: var(--overlay-light);
                 padding: 0.6rem;
                 border-radius: calc(4px + 0.6rem);
             }
@@ -153,7 +212,7 @@
                 width: min(2rem, 3svw);
                 height: min(2rem, 3svw);
                 text-decoration: none;
-                background-color: #0004;
+                background-color: var(--overlay-medium);
                 padding: 1rem;
                 border-radius: 4px;
             }
@@ -166,15 +225,65 @@
             }
 
             .socials-img {
-                filter: contrast(0) sepia() saturate(10) hue-rotate(200deg);
+                filter: contrast(0) sepia() saturate(10) hue-rotate(var(--socials-rotate));
                 width: 2rem;
                 user-select: none;
+            }
+            .evil-button {
+                top: 1svw;
+                left: 1svw;
+                position: fixed;
+            }
+
+            .splash-char {
+                position: fixed;
+                top: auto;
+                bottom: auto;
+                left: auto;
+                right: auto;
+                z-index: 1000;
+                font-size: min(90svw, 90svh);
+                text-align: center;
+                opacity: 0%;
+                filter: blur(8px);
+                filter: contrast(1) sepia() saturate(10) hue-rotate(-45deg);
+
+                mix-blend-mode: saturation;
+
+                animation: splashChar 1s linear;
+            }
+
+            @keyframes splashChar {
+                from {
+                    opacity: 100%;
+                }
+                to {
+                    opacity: 0%;
+                }
+            }
+
+            .mobile-warn-fback {
+                position: fixed;
+                top: 5svh;
+                left: auto;
+                right: auto;
+                z-index: 9999;
+            }
+
+            .mobile-warn-fback::after {
+                width: 90svw;
+                background-color: #0008;
+                content: "This site is not guaranteed to be fully functional on mobile devices.";
+                pointer-events: none;
             }
         </style>
     </head>
     <body>
+        <div class="mobile-warn-fback" hidden></div>
         <div class="name">bluebo<span>xxxx</span></div>
-        <p>The World's Greatest Music Producer <br /><span>(according to me)</span></p>
+        <p class="bx-main-content">
+            The World's Greatest Music Producer <br /><span>(according to me)</span>
+        </p>
         <div class="socials">
             <a class="socials-item" href="link" target="_blank" disabled>
                 <img src="https://cdn.simpleicons.org/discord" class="socials-img" />
@@ -200,12 +309,9 @@
                 <img src="https://cdn.simpleicons.org/spotify" class="socials-img" />
             </a>
         </div>
-        <script>
-            window.addEventListener("load", () => {
-                setTimeout(() => {
-                    document.querySelector(".name").classList.add("loaded");
-                }, 100);
-            });
-        </script>
+
+        <button class="evil-button">activate evil mode</button>
+
+        <script src="app.js"></script>
     </body>
 </html>
